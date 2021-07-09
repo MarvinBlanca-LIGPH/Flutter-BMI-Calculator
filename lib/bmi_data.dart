@@ -1,47 +1,41 @@
 import 'package:bmi_calculator/constants.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
-class BMIData extends ChangeNotifier {
-  Gender _selectedGender = Gender.male;
-  int _height = 180;
-  int _weight = 60;
-  int _age = 19;
+class BMIData extends GetxController {
+  var _selectedGender = Gender.male.obs;
+  var _height = 180.obs;
+  var _weight = 60.obs;
+  var _age = 19.obs;
 
-  void setGender(Gender gender) {
-    _selectedGender = gender;
-    notifyListeners();
+  void setGender(var gender) {
+    _selectedGender.value = gender;
   }
 
-  Gender get gender => _selectedGender;
+  get gender => _selectedGender;
 
-  int get height => _height;
+  get height => _height;
 
-  void setHeight(int height) {
-    _height = height;
-    notifyListeners();
+  void setHeight(var height) {
+    _height.value = height;
   }
 
-  int get weight => _weight;
+  get weight => _weight;
 
   void decreaseWeight() {
     _weight--;
-    notifyListeners();
   }
 
   void increaseWeight() {
     _weight++;
-    notifyListeners();
   }
 
-  int get age => _age;
+  get age => _age;
 
   void decreaseAge() {
     _age--;
-    notifyListeners();
   }
 
   void increaseAge() {
     _age++;
-    notifyListeners();
   }
 }

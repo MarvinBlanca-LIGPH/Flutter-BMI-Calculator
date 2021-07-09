@@ -1,6 +1,6 @@
-import 'package:bmi_calculator/bmi_data.dart';
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'screens/input_page.dart';
 
 void main() => runApp(BMICalculator());
@@ -8,15 +8,16 @@ void main() => runApp(BMICalculator());
 class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<BMIData>(
-      create: (_) => BMIData(),
-      child: MaterialApp(
-        theme: ThemeData.dark().copyWith(
-          primaryColor: Color(0xFF0A0E21),
-          scaffoldBackgroundColor: Color(0xFF0A0E21),
-        ),
-        home: InputPage(),
+    return GetMaterialApp(
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Color(0xFF0A0E21),
+        scaffoldBackgroundColor: Color(0xFF0A0E21),
       ),
+      getPages: [
+        GetPage(name: '/input', page: () => InputPage()),
+        GetPage(name: '/result', page: () => ResultsPage())
+      ],
+      initialRoute: '/input',
     );
   }
 }

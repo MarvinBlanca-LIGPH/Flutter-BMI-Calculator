@@ -2,19 +2,15 @@ import 'dart:ui';
 import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/utils/results_data.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResultsPage extends StatelessWidget {
-  ResultsPage(
-      {@required this.bmiResults,
-      @required this.resultsText,
-      @required this.interpretation});
-
-  final String bmiResults;
-  final String resultsText;
-  final String interpretation;
   @override
   Widget build(BuildContext context) {
+    final getResult = Get.find<ResultsData>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
@@ -41,15 +37,15 @@ class ResultsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    resultsText.toUpperCase(),
+                    getResult.resultText.toUpperCase(),
                     style: kResultTextStyle,
                   ),
                   Text(
-                    bmiResults,
+                    getResult.bmiResult,
                     style: kBMITextStyle,
                   ),
                   Text(
-                    interpretation,
+                    getResult.interpretationText,
                     style: kBodyTextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -60,7 +56,7 @@ class ResultsPage extends StatelessWidget {
           BottomButton(
               buttonTitle: 'RE-CALCULATE',
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
               })
         ],
       ),
